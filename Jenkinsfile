@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t bhaskarraodamuluri/nginx1:$BUILD_NUMBER .'
+                sh 'docker build -t bhaskarraodamuluri/nginx1:7 .'
             }
         }
         stage('login to dockerhub') {
@@ -22,17 +22,17 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push bhaskarraodamuluri/nginx1:$BUILD_NUMBER'
+                sh 'docker push bhaskarraodamuluri/nginx1:7'
             }
         }
         stage('pull image') {
             steps{
-                sh 'docker pull bhaskarraodamuluri/nginx1:$BUILD_NUMBER'
+                sh 'docker pull bhaskarraodamuluri/nginx1:7'
             }
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 85:80 bhaskarraodamuluri/nginx1:$BUILD_NUMBER'
+                sh 'docker run -d -p 85:80 bhaskarraodamuluri/nginx1:7'
             }
         }   
 }
