@@ -1,4 +1,3 @@
-
 pipeline {
     agent any 
     environment {
@@ -7,13 +6,13 @@ pipeline {
     stages { 
         stage('SCM Checkout') {
             steps{
-            git 'https://github.com/sai-313/nodejs-demo.git'
+            git 'https://github.com/BhaskarRao-D/DockerPipeline.git'
             }
         }
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t saikumar313/nodeapp1:$BUILD_NUMBER .'
+                sh 'docker build -t bhaskarraodamuluri/nginx:$BUILD_NUMBER .'
             }
         }
         stage('login to dockerhub') {
@@ -23,17 +22,17 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push saikumar313/nodeapp1:$BUILD_NUMBER'
+                sh 'docker push bhaskarraodamuluri/nginx:$BUILD_NUMBER'
             }
         }
         stage('pull image') {
             steps{
-                sh 'docker pull saikumar313/nodeapp1:$BUILD_NUMBER'
+                sh 'docker pull bhaskarraodamuluri/nginx:$BUILD_NUMBER'
             }
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 84:80 saikumar313/nodeapp1:$BUILD_NUMBER'
+                sh 'docker run -d -p 80:80 bhaskarraodamuluri/nginx:$BUILD_NUMBER'
             }
         }   
 }
