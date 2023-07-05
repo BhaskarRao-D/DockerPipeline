@@ -32,7 +32,7 @@ pipeline {
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 85:80 bhaskarraodamuluri/nginx1:7'
+                sh 'docker run -d -p 86:80 bhaskarraodamuluri/nginx1:7'
             }
         }   
 }
