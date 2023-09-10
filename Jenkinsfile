@@ -32,7 +32,7 @@ pipeline {
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 443:8 champ98/nginx'
+                sh 'docker run -d -p 443:80 champ98/nginx'
             }
         }   
 }
