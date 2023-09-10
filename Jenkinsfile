@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     environment {
-    DOCKERHUB_CREDENTIALS = credentials('docker-hub-bhaskarraodamuluri')
+    DOCKERHUB_CREDENTIALS = credentials('docker-hub-champ98')
     }
     stages { 
         stage('SCM Checkout') {
@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t bhaskarraodamuluri/nginx1:9 .'
+                sh 'docker build -t champ98:nginx .'
             }
         }
         stage('login to dockerhub') {
@@ -22,17 +22,17 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push bhaskarraodamuluri/nginx1:9'
+                sh 'docker push champ98/nginx'
             }
         }
         stage('pull image') {
             steps{
-                sh 'docker pull bhaskarraodamuluri/nginx1:9'
+                sh 'docker pull champ98/nginx'
             }
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 443:80 bhaskarraodamuluri/nginx1:9'
+                sh 'docker run -d -p 443:8 champ98/nginx'
             }
         }   
 }
