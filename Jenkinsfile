@@ -12,7 +12,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {  
-                sh 'docker build -t champ98:nginx .'
+                sh 'docker build -t champ98:nginx:latest .'
             }
         }
         stage('login to dockerhub') {
@@ -22,17 +22,17 @@ pipeline {
         }
         stage('push image') {
             steps{
-                sh 'docker push champ98/nginx'
+                sh 'docker push champ98/nginx:latest'
             }
         }
         stage('pull image') {
             steps{
-                sh 'docker pull champ98/nginx'
+                sh 'docker pull champ98/nginx:latest'
             }
         }
       stage('run image') {
             steps{
-                sh 'docker run -d -p 443:80 champ98/nginx'
+                sh 'docker run -d -p 443:80 champ98/nginx:latest'
             }
         }   
 }
